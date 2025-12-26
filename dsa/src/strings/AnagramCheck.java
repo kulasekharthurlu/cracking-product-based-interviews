@@ -2,7 +2,6 @@ package strings;
 
 public class AnagramCheck {
 
-     
     public static boolean areAnagrams(String s1, String s2) {
         if (s1 == null || s2 == null) return false;
         if (s1.length() != s2.length()) return false;

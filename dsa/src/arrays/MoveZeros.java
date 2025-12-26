@@ -9,7 +9,6 @@ public class MoveZeros {
 		int[] returnValue = moveZeroFirst(a);
 		System.out.println(Arrays.toString(returnValue));
 	}
-
 	public static int[] moveZeroEnd(int[] inputArray) {
 		if(inputArray == null || inputArray.length == 0) {
 			return new int[] {};
