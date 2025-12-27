@@ -2,7 +2,6 @@ package arrays;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class MajorityElement {
 
     public static int findMajorityElement(int[] arr) {
