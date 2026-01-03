@@ -3,22 +3,16 @@ package arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class KthLargestNumberExample {
+public class KthLargestNumber {
 
     private static int kthLargestNumber(int[] arr, int k) {
-        // Min-heap of size k
         Queue<Integer> queue = new PriorityQueue<>(k);
-
         for (int num : arr) {
             queue.offer(num);
-
-            // Keep only k largest elements in the heap
             if (queue.size() > k) {
                 queue.poll();
             }
         }
-
-        // The root of the min-heap is the kth largest element
         return queue.peek();
     }
 
