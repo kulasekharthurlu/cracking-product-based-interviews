@@ -2,7 +2,7 @@ package arrays;
 
 public class CheckArraySorted {
 
-    private static boolean checkArrayIsSorted(int[] arr) {
+    public static boolean checkArrayIsSorted(int[] arr) {
 
         if (arr == null || arr.length < 2) {
             return true;   // Single element or empty array is always sorted
