@@ -15,6 +15,17 @@ public class FindDuplicateNumber {
         }
         return -1;
     }
+public static int findDuplicateStream(int[] arr) {
+    return Arrays.stream(arr)
+            .boxed()
+            .collect(Collectors.groupingBy(n -> n, Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter(e -> e.getValue() > 1)
+            .map(Map.Entry::getKey)
+            .findFirst()
+            .orElse(-1);
+}
 
     public static void main(String[] args) {
         int[] arr = {3, 1, 4, 2, 5, 3};
