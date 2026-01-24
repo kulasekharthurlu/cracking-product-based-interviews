@@ -41,5 +41,20 @@ public class MoveZeros {
         }
 		return inputArray;
 	}
+	public static int[] moveZeroFirstWithStreams(int[] inputArray) {
+
+    if (inputArray == null || inputArray.length == 0) {
+        return new int[]{};
+    }
+
+    long zeroCount = Arrays.stream(inputArray)
+                           .filter(n -> n == 0)
+                           .count();
+
+    return IntStream.concat(
+            IntStream.generate(() -> 0).limit(zeroCount),
+            Arrays.stream(inputArray).filter(n -> n != 0)
+    ).toArray();
+}
 	
 }
