@@ -15,6 +15,19 @@ public class FindMissingNumber {
         }
         return -1;
     }
+    private static int findMissingNumberWithStream(int[] arr) {
+
+        if (arr == null || arr.length < 2) {
+            return -1;
+        }
+    int n = arr.length + 1;
+
+    int expectedSum = IntStream.rangeClosed(1, n).sum();
+
+    int actualSum = Arrays.stream(arr).sum();
+
+    return expectedSum - actualSum;
+    }
 
     public static void main(String[] args) {
 
