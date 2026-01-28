@@ -22,4 +22,14 @@ public class ReverseArray {
 		}
 		return arr;
 	}
+	public static int[] reverseArrayWithStreams(int[] arr) {
+
+    if (arr == null || arr.length == 0) {
+        return new int[]{};
+    }
+
+    return IntStream.range(0, arr.length)
+            .map(i -> arr[arr.length - 1 - i])
+            .toArray();
+    }
 }
