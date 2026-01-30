@@ -21,6 +21,25 @@ public class MajorityElement {
         }
         return -1; // No majority element
     }
+    public static int findMajorityElementWithStreams(int[] arr) {
+
+    if (arr == null || arr.length == 0) {
+        return -1;
+    }
+
+    return Arrays.stream(arr)
+            .boxed()
+            .collect(Collectors.groupingBy(
+                    Function.identity(),
+                    Collectors.counting()
+            ))
+            .entrySet()
+            .stream()
+            .filter(e -> e.getValue() > arr.length / 2)
+            .map(Map.Entry::getKey)
+            .findFirst()
+            .orElse(-1);
+}
 
     public static void main(String[] args) {
         int[] arr = {2, 2, 1, 2, 3, 2, 2};
