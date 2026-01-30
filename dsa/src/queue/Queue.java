@@ -1,3 +1,7 @@
+package queue;
+
+import java.util.NoSuchElementException;
+
 public class Queue {
         private ListNode front;
         private ListNode rear;

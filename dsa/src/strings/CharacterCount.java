@@ -6,20 +6,18 @@ import java.util.stream.Collectors;
 
 public class CharacterCount {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        StringBuilder sb = new StringBuilder();
+		var sb = getCharacterCount("aabbcc");
 
-        Arrays.stream("aaabbcc".split(""))
-                .collect(Collectors.groupingBy(
-                        Function.identity(),
-                        LinkedHashMap::new,    
-                        Collectors.counting()
-                ))
-                .forEach((key, value) ->
-                        sb.append(key).append(value)
-                );
+		System.out.println(sb.toString()); // a3b2c2
+	}
 
-        System.out.println(sb.toString()); // a3b2c2
-    }
+	public static String getCharacterCount(String string) {
+		StringBuilder sb = new StringBuilder();
+		Arrays.stream("aaabbcc".split(""))
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+				.forEach((key, value) -> sb.append(key).append(value));
+		return sb.toString();
+	}
 }

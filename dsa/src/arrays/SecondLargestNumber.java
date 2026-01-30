@@ -2,11 +2,11 @@ package arrays;
 
 public class SecondLargestNumber {
 
-    public static void findSecondLargest(int[] arr) {
+    public static Integer findSecondLargest(int[] arr) {
 
         if (arr == null || arr.length < 2) {
             System.out.println("Array must contain at least two elements");
-            return;
+            return null;
         }
 
         int max = Integer.MIN_VALUE;
@@ -27,6 +27,7 @@ public class SecondLargestNumber {
         } else {
             System.out.println("Second Largest Number: " + secondMax);
         }
+        return (secondMax == Integer.MIN_VALUE) ? null : secondMax;
     }
 
     public static void main(String[] args) {
