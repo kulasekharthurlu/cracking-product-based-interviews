@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.stream.IntStream;
+
 public class CheckArraySorted {
 
     public static boolean checkArrayIsSorted(int[] arr) {
