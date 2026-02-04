@@ -24,5 +24,24 @@ public class TwoSum {
 		}
 		return new int[] { -1, -1 };
 	}
+	public static int[] twoSumWithStreams(int[] inputArray, int target) {
+    if (inputArray == null || inputArray.length < 2) {
+        return new int[]{-1, -1};
+    }
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+    return IntStream.range(0, inputArray.length)
+            .filter(i -> {
+                if (map.containsKey(target - inputArray[i])) {
+                    return true;
+                }
+                map.put(inputArray[i], i);
+                return false;
+            })
+            .mapToObj(i -> new int[]{map.get(target - inputArray[i]), i})
+            .findFirst()
+            .orElse(new int[]{-1, -1});
+}
 	
 }

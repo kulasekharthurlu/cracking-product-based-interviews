@@ -15,6 +15,15 @@ public class CheckArraySorted {
         }
         return true;
     }
+    public static boolean checkArrayIsSortedWithStreams(int[] arr) {
+
+    if (arr == null || arr.length < 2) {
+        return true;
+    }
+
+    return IntStream.range(1, arr.length)
+            .allMatch(i -> arr[i - 1] <= arr[i]);
+}
 
     public static void main(String[] args) {
 
