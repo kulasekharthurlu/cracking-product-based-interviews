@@ -83,6 +83,20 @@ public class SinglyLinkedList {
 			current.next = null;
 		}
 	}
+		private void insertInSortedList(Integer data) {
+		ListNode newNode = new ListNode(data);
+		ListNode temp = head;
+		while (temp != null && temp.next != null) {
+			if (data >= temp.data && data <= temp.next.data) {
+				ListNode temp2 = temp.next;
+				temp.next = newNode;
+				newNode.next = temp2;
+				return;
+			}
+			temp = temp.next;
+		}
+
+	}
 
 	public void searchKey(int key) {
 		if (head == null) {
