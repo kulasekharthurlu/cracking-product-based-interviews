@@ -13,6 +13,30 @@ public class SinglyLinkedList {
 		}
 	}
 
+private void sortListWithBobbulSort() {
+		boolean isSwaped = true;
+		ListNode end = null;
+		while(isSwaped) {
+			isSwaped = false;
+			ListNode current = this.head;
+			while(current.next != end) {
+				if(current.data > current.next.data) {
+					int temp = current.data;
+					current.data = current.next.data;
+					current.next.data = temp;
+					isSwaped = true;
+				}
+				current = current.next;
+			}
+			end = current;
+			if(!isSwaped) {
+				break;
+			}
+			
+		}
+		
+	}
+
 	public void printList() {
 		ListNode current = head;
 		if (current == null) {
