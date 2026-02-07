@@ -12,7 +12,34 @@ public class SinglyLinkedList {
 			this.next = null;
 		}
 	}
-
+private ListNode mergeTwoSortedLists() {
+		ListNode temp1 = this.head;
+		ListNode temp2 =new ListNode(20);
+		temp2.next=new ListNode(30);
+		temp2.next.next=new ListNode(37); 
+		ListNode dummy = new ListNode(0);
+		ListNode current = dummy;
+		while(temp1 != null && temp2 != null) {
+			if(temp1.data > temp2.data) {
+				current.next = temp2;
+				temp2 = temp2.next;
+			}else {
+				current.next = temp1;
+				temp1 = temp1.next;
+			}
+			current = current.next;
+		}
+		if(temp1 != null) {
+			current.next = temp1;
+			 
+		}
+		if(temp2 != null) {
+			current.next = temp2;
+			 
+		}
+		
+		return dummy.next;
+	}
 private void sortListWithBobbulSort() {
 		boolean isSwaped = true;
 		ListNode end = null;
