@@ -339,6 +339,19 @@ private void sortListWithBobbulSort() {
 		return temp;
 
 	}
+	private void removeDuplicatesFromUnsortedList(ListNode head2) {
+		Set<Integer> set = new HashSet<>();
+		ListNode temp = head2;
+		set.add(temp.data);
+		while (temp != null && temp.next != null) {
+			if (set.contains(temp.next.data)) {
+				temp.next = temp.next.next;
+			}
+			set.add(temp.data);
+			temp = temp.next;
+		}
+
+	}
 
 	public void removeLoop() {
 		ListNode fastPtr = head;
