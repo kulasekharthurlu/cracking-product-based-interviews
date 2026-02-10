@@ -122,6 +122,16 @@ private void sortListWithBobbulSort() {
 			current.next = newNode;
 		}
 	}
+  private void removeDuplicatesFromSortedList(ListNode head2) {
+		ListNode temp = head2;
+		while (temp != null) {
+			while (temp != null && temp.next != null && temp.data == temp.next.data) {
+				temp.next = temp.next.next;
+			}
+			temp = temp.next;
+		}
+
+	}
 
 	public void removeLast() {
 		if (head == null) {
