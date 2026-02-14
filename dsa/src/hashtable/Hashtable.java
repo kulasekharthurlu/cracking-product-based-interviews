@@ -72,5 +72,23 @@ public class Hashtable<K, V> {
 		return null;
 
 	}
+    public V remove(K key) {
+		int bucketIndex = getBucketIndex(key);
+		HashNode<K, V> head = buckets[bucketIndex];
+        var temp = head;
+
+		while (temp != null) {
+			if (temp.next.key == key) {
+                V value = temp.next.value
+                temp.next = temp.next.next;
+				return value;
+			}
+			temp = temp.next;
+		}
+        buckets[bucketIndex] = head;
+
+		return null;
+
+	}
 
 }
