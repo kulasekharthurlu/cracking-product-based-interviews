@@ -12,4 +12,18 @@ public class SumOfNnaturalNums{
         }
        return sumOfNumbers(range-1)+range;
     }
+     public int productOfNnumbers(int range){
+        if(range == 1){
+            return 1;
+        }
+       return productOfNnumbers(range-1)*range;
+    }
+    public void printLinkedListInReverseOrder(ListNode head){
+        if(head == null){
+            return ;
+        }
+         printLinkedListInReverseOrder(head.next);
+         System.out.print(head.data + " -> ");
+       return ;
+    }
 }
