@@ -7,11 +7,11 @@ public class Hashtable<K, V> {
 	private int numOfBuckets;
 	private int size;
 
-	public HashTable() {
+	public Hashtable() {
 		this(16);
 	}
 
-	public HashTable(int capacity) {
+	public Hashtable(int capacity) {
 		this.numOfBuckets = capacity;
 		this.buckets = new HashNode[capacity];
 		this.size = 0;
@@ -79,7 +79,7 @@ public class Hashtable<K, V> {
 
 		while (temp != null) {
 			if (temp.next.key == key) {
-                V value = temp.next.value
+                V value = temp.next.value;
                 temp.next = temp.next.next;
 				return value;
 			}
