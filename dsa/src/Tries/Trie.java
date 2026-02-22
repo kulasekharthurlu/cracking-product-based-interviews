@@ -38,6 +38,51 @@ public class Trie {
 
 	}
 
+	public boolean search(String word) {
+    if (word == null || word.isEmpty()) {
+        return false;
+    }
+
+    word = word.toLowerCase();
+    TrieNode current = root;
+
+    for (int i = 0; i < word.length(); i++) {
+        char c = word.charAt(i);
+        int index = c - 'a';
+
+        if (current.children[index] == null) {
+            return false;
+        }
+
+        current = current.children[index];
+    }
+
+    return current.isWord;
+}
+
+public boolean startsWith(String prefix) {
+    if (prefix == null || prefix.isEmpty()) {
+        return false;
+    }
+
+    prefix = prefix.toLowerCase();
+    TrieNode current = root;
+
+    for (int i = 0; i < prefix.length(); i++) {
+        char c = prefix.charAt(i);
+        int index = c - 'a';
+
+        if (current.children[index] == null) {
+            return false;
+        }
+
+        current = current.children[index];
+    }
+
+    return true;
+}
+
+
 	public static void main(String[] args) {
 		Trie trie = new Trie();
 		trie.insert("cat");
