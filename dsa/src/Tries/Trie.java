@@ -122,6 +122,15 @@ private boolean delete(TrieNode current, String word, int index) {
     return false;
 }
 
+private boolean isEmpty(TrieNode node) {
+    for (TrieNode child : node.children) {
+        if (child != null) {
+            return false;
+        }
+    }
+    return true;
+}
+
 	public static void main(String[] args) {
 		Trie trie = new Trie();
 		trie.insert("cat");
