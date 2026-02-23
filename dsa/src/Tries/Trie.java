@@ -82,6 +82,45 @@ public boolean startsWith(String prefix) {
     return true;
 }
 
+public void delete(String word) {
+    if (word == null || word.isEmpty()) {
+        throw new IllegalArgumentException("Invalid input");
+    }
+
+    delete(root, word.toLowerCase(), 0);
+}
+
+private boolean delete(TrieNode current, String word, int index) {
+
+    // Base case: reached end of word
+    if (index == word.length()) {
+        if (!current.isWord) {
+            return false; // word not present
+        }
+
+        current.isWord = false;
+
+        // if node has no children, it can be deleted
+        return isEmpty(current);
+    }
+
+    char c = word.charAt(index);
+    int childIndex = c - 'a';
+    TrieNode node = current.children[childIndex];
+
+    if (node == null) {
+        return false; // word not found
+    }
+
+    boolean shouldDeleteCurrentNode = delete(node, word, index + 1);
+
+    if (shouldDeleteCurrentNode) {
+        current.children[childIndex] = null;
+        return !current.isWord && isEmpty(current);
+    }
+
+    return false;
+}
 
 	public static void main(String[] args) {
 		Trie trie = new Trie();
