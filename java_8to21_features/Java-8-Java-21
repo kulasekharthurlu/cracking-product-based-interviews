@@ -1,0 +1,789 @@
+JAVA-5
+------
+1.For-Each Loop
+2.Varargs
+3.Static Import
+4.Autoboxing and Unboxing
+5.Enums
+6.Covarient Returntype
+7.Generics
+8.Annotations
+
+JAVA-8(LTS)
+------
+1.Funcational Interface
+2.Streams
+3.Lamda Expressions
+4.Method Reference
+5.Constructor Reference
+6.Optional Class
+7.Date/Time Api
+8.Default Methods
+9.Static methods in interface
+10.forEach() method
+
+JAVA-9
+------
+1.Module System (Project Jigsaw)
+2.Collection Factory Methods
+3.Private Methods in Interfaces
+4.Optional Enhancements
+
+JAVA-10
+-------
+1.Local Variable Type Inference (var)
+2.Unmodifiable Collections
+
+JAVA-11 (LTS)
+-------
+1.String Methods (isBlank, lines, strip)
+2.Local Variable Syntax for Lambda
+3.Files API Improvements
+4.Webclient
+5.Collection.toArray()
+6. Predicate.not()
+
+JAVA-12
+-------
+1.Switch Expressions (Preview)
+2.String Methods
+3.Collectors.teeing()
+4.Compact Number Formatting
+
+JAVA-13
+-------
+1.Text Blocks (Preview)
+
+JAVA-14
+-------
+1.Records (Preview)
+2.Helpful NullPointerException
+3.Pattern Matching for instanceof
+4.Switch Expressions (Standard)
+
+JAVA-15
+-------
+1.Sealed Classes (Preview)
+2.Text Blocks (Standard)
+
+JAVA-16
+-------
+1.Records (Standard)
+2.Pattern Matching for instanceof (Standard)
+3.Stream.toList()
+4.Day Period Support
+
+JAVA-17(LTS)
+------------
+1.Sealed Classes (Standard)
+2.Pattern Matching for Switch (Preview)
+3.Enhanced Pseudo-Random Number Generators
+
+JAVA-18
+-------
+1. UTF-8 by Default
+2.Simple Web Server
+3.Code Snippets in Javadoc
+4.Internet-Address Resolution SPI(Service Provider Interface)
+
+JAVA-19
+-------
+1.Virtual Threads (Preview)
+2.Pattern Matching for Switch (Third Preview)
+3.Record Patterns (Preview)
+4.Structured Concurrency (Incubator)
+
+JAVA-20
+-------
+1.Record Patterns (Second Preview)
+2.Pattern Matching for Switch (Fourth Preview)
+3.Scoped Values (Incubator)
+4.Virtual Threads (Second Preview)
+
+JAVA-21(LTS)
+------------
+1.Pattern Matching for Switch (Standard)
+2.Record Patterns (Standard)
+3.Virtual Threads (Standard)
+4.Sequenced Collections
+6.Unnamed Patterns and Variables
+7.Unnamed Classes and Instance Main Methods
+8.Scoped Values (Preview)
+9.Structured Concurrency (Preview)
+10.Key Encapsulation Mechanism API
+
+JAVA-5
+------
+1. For-Each Loop
+The for-each loop allows for iterating over elements of an array or collection.
+public class ForEachExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        for (int number : numbers) {
+            System.out.println(number);
+        }
+    }
+}
+
+2. Varargs (Variable Arguments)
+Varargs allows passing a variable number of arguments to a method.
+public class VarArgsExample {
+    public static void main(String[] args) {
+        printNumbers(1, 2, 3, 4, 5);
+    }
+
+    private static void printNumbers(int... numbers) {
+        for (int number : numbers) {
+            System.out.println(number);
+        }
+    }
+}
+
+3. Static Import
+Static import allows importing static members (fields and methods) of a class directly.
+import static java.lang.Math.*;
+
+public class StaticImportExample {
+    public static void main(String[] args) {
+        double result = sqrt(25); // No need to use Math.sqrt
+        System.out.println("Square root of 25: " + result);
+    }
+}
+
+4. Autoboxing and Unboxing
+Autoboxing automatically converts between primitive types and their corresponding wrapper classes.
+public class AutoboxingExample {
+    public static void main(String[] args) {
+        // Autoboxing: converting int to Integer
+        Integer a = 10;
+        
+        // Unboxing: converting Integer to int
+        int b = a;
+
+        System.out.println("Autoboxed Integer: " + a);
+        System.out.println("Unboxed int: " + b);
+    }
+}
+
+5. Enums
+Enums are a special type in Java that represent a group of constants.
+public class EnumExample {
+    enum Days {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
+    public static void main(String[] args) {
+        Days today = Days.WEDNESDAY;
+        System.out.println("Today is: " + today);
+    }
+}
+
+6. Covariant Return Type
+Covariant return types allow an overridden method to return a subclass of the return type declared in the superclass.
+class Animal {
+    Animal get() {
+        return this;
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    Dog get() {
+        return this;
+    }
+
+    void display() {
+        System.out.println("Dog method");
+    }
+}
+
+public class CovariantReturnExample {
+    public static void main(String[] args) {
+        new Dog().get().display();
+    }
+}
+
+7. Generics
+Generics provide a way to define classes, interfaces, and methods with type parameters.
+import java.util.ArrayList;
+
+public class GenericsExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Hello");
+        list.add("World");
+
+        for (String str : list) {
+            System.out.println(str);
+        }
+    }
+}
+
+8. Annotations
+Annotations provide metadata for your code. One of the built-in annotations is @Override.
+class Parent {
+    void display() {
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void display() {
+        System.out.println("Child method");
+    }
+}
+
+public class AnnotationExample {
+    public static void main(String[] args) {
+        new Child().display();
+    }
+}
+
+JAVA-9
+------
+2. Collection Factory Methods
+List<String> list = List.of("Java", "Spring", "Docker");
+System.out.println(list);
+3. Private Methods in Interfaces
+interface Test {
+
+    default void print() {
+        log();
+    }
+
+    private void log() {
+        System.out.println("Logging...");
+    }
+}
+4. Optional Enhancements
+Optional<String> name = Optional.of("Sekhar");
+
+name.ifPresentOrElse(
+    System.out::println,
+    () -> System.out.println("Empty")
+);
+
+JAVA-10
+-------
+1. Local Variable Type Inference (var)
+var name = "Sekhar";
+var age = 25;
+
+System.out.println(name + " " + age);
+
+2. Unmodifiable Collections
+List<Integer> list = List.copyOf(List.of(1,2,3));
+List<Integer> collect = List.of(1, 2, 3).stream().collect(Collectors.toUnmodifiableList());
+
+Java 11 (LTS)
+------------
+1. String Methods (isBlank, lines, strip)
+" ".isBlank(); // true
+"Hello\n".strip(); // "Hello"
+"Line1\nLine2".lines().count(); // 2
+"Java".repeat(3); // "JavaJavaJava"
+
+2.Local Variable Syntax for Lambda
+list.forEach((var item) -> System.out.println(item));
+
+3.Files API Improvements
+String data = Files.readString(Path.of("file.txt"));
+System.out.println(data);
+
+4.Webclient
+@Configuration
+public class WebClientConfig {
+    
+    @Bean
+    public WebClient webClient() {
+        return WebClient.builder()
+                .baseUrl("https://jsonplaceholder.typicode.com") // Example API
+                .build();
+    }
+}
+
+
+
+
+@Service
+public class WebClientService {
+    private final WebClient webClient;
+
+    public WebClientService(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    ==>GET Request
+    public String getPostById(int id) {
+        return webClient.get()
+                .uri("/posts/{id}", id)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block(); // Blocking for simplicity
+    }
+}
+5. Collection.toArray()
+String[] array = list.toArray(String[]::new);
+
+6. Predicate.not()
+list.stream().filter(Predicate.not(String::isBlank));
+
+JAVA-12
+-------
+1. Switch Expressions (Preview)
+String result = switch (day) {
+    case MONDAY, FRIDAY -> "Work";
+    case SATURDAY, SUNDAY -> "Rest";
+    default -> "Other";
+};
+2.String Methods
+
+"Hello".indent(4); //    Hello(it will add first 4 spaces)
+"Hello\nWorld".transform(s -> s + "!"); (the exclmatery mark will be added at the last word)
+o\p
+----
+Hello
+World!
+
+3. Collectors.teeing()
+var result = List.of(1,2,3,10).stream().collect(Collectors.teeing(
+    Collectors.summingInt(Integer::intValue),
+    Collectors.counting(),
+    (sum, count) -> sum / count
+)); // 4
+
+4.Compact Number Formatting
+NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+fmt.format(1000); // "1K"
+
+JAVA-13
+-------
+1. Text Blocks (Preview)
+String json = """
+    {
+        "name": "John",
+        "email": "john@example.com"
+    }
+    """;
+JAVA-14
+-------
+1. Records (Preview)
+record Person(String name, int age) {}
+Person p = new Person("Sekhar", 25);
+System.out.println(p.name());
+
+2.Helpful NullPointerException
+String name = null;
+System.out.println(name.length());
+
+Output now shows which variable is null.
+
+3.Pattern Matching for instanceof
+if (obj instanceof String s) {
+    System.out.println(s.toUpperCase());
+}
+4.Switch Expressions (Standard)
+int numLetters = switch (day) {
+    case MONDAY, FRIDAY, SUNDAY -> 6;
+    case TUESDAY -> 7;
+    default -> 8;
+};
+
+JAVA-15
+-------
+1.Sealed Classes (Preview)
+sealed interface Shape permits Circle, Rectangle {}
+final class Circle implements Shape {}
+final class Rectangle implements Shape {}
+
+2. Text Blocks (Standard)
+String html = """
+    <html>
+        <body>Hello</body>
+    </html>
+    """;
+
+JAVA-16
+-------
+1. Records (Standard)
+record Point(int x, int y) {}
+2. Pattern Matching for instanceof (Standard)
+if (obj instanceof String s && s.length() > 5) {
+    System.out.println(s);
+}
+3. Stream.toList()
+List<String> list = stream.toList(); // Unmodifiable
+4.Day Period Support
+DateTimeFormatter.ofPattern("B"); // "in the morning", "in the afternoon"
+LocalTime t1 = LocalTime.of(6, 0);
+LocalTime t2 = LocalTime.of(13, 0);
+LocalTime t3 = LocalTime.of(19, 0);
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("B");
+
+System.out.println(t1.format(formatter)); // in the morning
+System.out.println(t2.format(formatter)); // in the afternoon
+System.out.println(t3.format(formatter)); // in the evening
+
+LocalTime time = LocalTime.now();
+
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("hh B");
+
+System.out.println(time.format(formatter)); // 09 in the morning
+
+Difference Between a and B
+Pattern	Meaning	        Example
+a	    AM/PM	        9 AM
+B  Natural day period	in the morning
+
+LocalTime time = LocalTime.of(9, 0);
+
+System.out.println(time.format(DateTimeFormatter.ofPattern("hh a"))); // 09 AM
+System.out.println(time.format(DateTimeFormatter.ofPattern("hh B"))); // 09 in the morning
+
+JAVA-17(LTS)
+------------
+1. Sealed Classes (Standard)
+
+sealed class Payment permits CreditCard, Cash {}
+final class CreditCard extends Payment {}
+non-sealed class Cash extends Payment {}
+
+2. Pattern Matching for Switch (Preview)
+String result = switch (obj) {
+    case Integer i -> "Int: " + i;
+    case String s -> "String: " + s;
+    default -> "Other";
+};
+
+3.Enhanced Pseudo-Random Number Generators
+RandomGenerator random = RandomGenerator.of("L128X256MixRandom");//RandomGenerator.of("L64X128MixRandom")//RandomGenerator.of("Xoshiro256PlusPlus")//RandomGenerator.of("Xoroshiro128PlusPlus")
+int number = random.nextInt(100);
+System.out.println(number); // 23
+
+It means:
+Create a random number generator
+Using the algorithm L128X256MixRandom
+Return it as a RandomGenerator interface
+old : Random random = new Random();
+
+JAVA-18
+-------
+1. UTF-8 by Default
+Files.readString(Path.of("file.txt")); // UTF-8 default
+before java 18 : we need mention while read or write
+String content = Files.readString(
+        Path.of("file.txt"),
+        StandardCharsets.UTF_8
+);
+after java 18: no need mention while read or write(UTF-8 default)
+String content = Files.readString(
+        Path.of("file.txt")  
+);
+2.Simple Web Server
+// Command line: jwebserver
+jwebserver starts a simple HTTP file server that serves files from the current directory.
+Example use cases:
+Testing HTML files
+Testing JavaScript frontend
+Quick local file hosting
+Learning HTTP basics
+It is not meant for production.
+
+Basic Example
+Suppose you have a folder:
+project
+ ├── index.html
+ └── script.js
+Open terminal inside the folder and run:
+jwebserver
+
+http://localhost:8000
+http://localhost:8000/index.html
+jwebserver --port 9000
+
+Java 18 introduced jwebserver, a command-line tool that starts a lightweight HTTP server to serve static files from a directory, mainly for development and testing purposes.
+3.Code Snippets in Javadoc
+befor 18:
+/**
+ * Example:
+ * <pre>
+ * String s = "Hello";
+ * </pre>
+ */
+After 18:
+
+/**
+ * Example of a simple string.
+ *
+ * {@snippet :
+ * String s = "Hello";
+ * System.out.println(s);
+ * }
+ */
+ Java 18 introduced the {@snippet} tag in Javadoc, which allows developers to include properly formatted code examples in documentation.
+4.Internet-Address Resolution SPI(Service Provider Interface)
+// Custom DNS resolution
+Internet-Address Resolution SPI allows developers to customize how Java converts a hostname into an IP address.
+Before Java 18
+-----
+Java App
+   ↓
+OS DNS
+   ↓
+Internet DNS
+   ↓
+IP Address
+
+After Java 18
+-----
+Java App
+   ↓
+Custom DNS Resolver (your code)
+   ↓
+IP Address
+
+JAVA-19
+-------
+1.Virtual Threads (Preview)
+Thread.startVirtualThread(() -> {
+    System.out.println("Virtual thread");
+});
+Traditional Threads vs Virtual Threads
+Feature	         Platform Threads	Virtual Threads
+Managed by	          OS	              JVM
+Memory usage	      High	           Very low
+Number possible	     Thousands	       Millions
+Creation cost	     Expensive	           Cheap
+Virtual Threads are lightweight threads introduced in Java 19 (Project Loom) that allow Java applications to handle millions of concurrent tasks efficiently by letting the JVM manage thread scheduling instead of the operating system.
+2.Pattern Matching for Switch (Third Preview)
+String result = switch (obj) {
+    case Integer i -> "Int: " + i;
+    case String s when s.length() > 5 -> "Long string";
+    case String s -> "Short string";
+    case null -> "Null";
+    default -> "Other";
+};
+
+3.Record Patterns (Preview)
+record Point(int x, int y) {}
+if (obj instanceof Point(int x, int y)) {
+    System.out.println(x + ", " + y);
+}
+
+4.Structured Concurrency (Incubator): Structured Concurrency allows multiple tasks to run concurrently in a structured scope where their lifecycle is managed together, improving reliability and error handling.
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) { //This creates a task scope. Think of it like a task manager that controls multiple threads.
+    Future<String> user = scope.fork(() -> fetchUser()); // task 1
+    Future<Integer> order = scope.fork(() -> fetchOrder()); // task 2
+    scope.join(); // This waits until all tasks finish. 
+    scope.throwIfFailed(); // If one task fails, all other tasks stop automatically.
+
+}
+fork() starts tasks in parallel threads.
+Main Thread
+     │
+     ▼
+StructuredTaskScope
+     │
+     ├── Task 1 → fetchUser()
+     │
+     └── Task 2 → fetchOrder()
+
+Both run in parallel
+
+JAVA-20
+-------
+1.Record Patterns (Second Preview)
+record Point(int x, int y) {}
+if (obj instanceof Point(int x, int y)) {
+    System.out.println("x=" + x);
+}
+
+2.Pattern Matching for Switch (Fourth Preview)
+String result = switch (obj) {
+    case Integer i when i > 0 -> "Positive";
+    case Integer i -> "Non-positive";
+    default -> "Not an integer";
+};
+3.Scoped Values (Incubator): Scoped Values allow immutable data to be shared across methods within a controlled execution scope, providing a safer alternative to ThreadLocal, especially when using virtual threads.
+final static ScopedValue<String> USER = ScopedValue.newInstance();
+ScopedValue.where(USER, "john").run(() -> process());
+	
+Virtual Threads
+       +
+Structured Concurrency
+       +
+Scoped Values
+
+These three features together are part of Project Loom.
+
+4.Virtual Threads (Second Preview) : Executors.newVirtualThreadPerTaskExecutor() creates an executor where each submitted task runs in its own lightweight virtual thread, enabling applications to handle massive concurrency efficiently.
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -> task());
+}
+This means:
+1.Create an ExecutorService that uses virtual threads
+2.Submit tasks
+3.Each task runs in a separate virtual thread
+4.Executor closes automatically when finished
+
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+
+            for (int i = 0; i < 5; i++) {
+
+                int id = i;
+
+                executor.submit(() -> {
+                    System.out.println(
+                        "Task " + id +
+                        " running in " +
+                        Thread.currentThread()
+                    );
+                });
+
+            }
+}
+Example Output:
+Task 0 running in VirtualThread[#21]
+Task 1 running in VirtualThread[#22]
+Task 2 running in VirtualThread[#23]
+Task 3 running in VirtualThread[#24]
+Task 4 running in VirtualThread[#25]
+Each task runs in a separate virtual thread.
+
+old : Executors.newFixedThreadPool(10)
+new: virtual threads will increase automatically
+
+JAVA-21(LTS)
+------------
+1. Pattern Matching for Switch (Standard)
+String result = switch (obj) {
+    case Integer i -> "Int: " + i;
+    case String s when s.length() > 5 -> "Long";
+    case String s -> "Short";
+    case null -> "Null";
+    default -> "Other";
+};
+
+2.Record Patterns (Standard)
+record Order(Long id, User user) {}
+record User(String name, String email) {}
+if (order instanceof Order(var id, User(var name, var email))) {
+    System.out.println(name);
+}
+
+3.Virtual Threads (Standard)
+Thread.ofVirtual().start(() -> task());
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -> task());
+}
+
+4.Sequenced Collections
+List<String> list = List.of("a", "b", "c");
+list.getFirst(); // "a"
+list.getLast(); // "c"
+list.reversed(); // reversed view
+SequencedMap<K, V> map = new LinkedHashMap<>();
+map.firstEntry();
+map.lastEntry();
+
+5.String Templates (Preview)
+String name = "John";
+String msg = STR."Hello, \{name}!";
+String json = STR."""
+    {
+        "name": "\{name}"
+    }
+    """;
+6.Unnamed Patterns and Variables
+if (obj instanceof Point(int x, _)) { } // Ignore y
+switch (obj) {
+    case Point(int x, _) -> x;
+}
+7.Unnamed Classes and Instance Main Methods : Allow Java programs to run without explicitly declaring a class or static main method, simplifying Java programs for beginners.
+void main() {
+    System.out.println("Hello World");
+}
+8.Scoped Values (Preview) : Scoped Values allow immutable data to be shared across methods within a limited execution scope, providing a safer alternative to ThreadLocal, especially when used with virtual threads.
+
+In modern Java concurrency (Project Loom) these three features work together:
+Virtual Threads
+Structured Concurrency
+Scoped Values
+These are very important modern Java features (Java 19–21).
+
+final static ScopedValue<User> CURRENT_USER = ScopedValue.newInstance();
+ScopedValue.where(CURRENT_USER, user).run(() -> process());
+ex:-
+import java.lang.ScopedValue;
+
+class User {
+    String name;
+
+    User(String name) {
+        this.name = name;
+    }
+}
+
+public class Test {
+
+    static final ScopedValue<User> CURRENT_USER = ScopedValue.newInstance();
+
+    public static void main(String[] args) {
+
+        User user = new User("John");
+
+        ScopedValue.where(CURRENT_USER, user).run(() -> process());
+
+    }
+
+    static void process() {
+        System.out.println(CURRENT_USER.get().name);
+    }
+}
+9. Structured Concurrency (Preview)
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+    Future<String> result1 = scope.fork(() -> task1());
+    Future<String> result2 = scope.fork(() -> task2());
+    scope.join().throwIfFailed();
+}
+-->Run task1 and task2 in parallel
+-->Wait for them to finish
+-->If any task fails → stop everything
+Main Thread
+     │
+     ▼
+StructuredTaskScope
+     │
+     ├── task1()
+     └── task2()
+Why This Feature Was Introduced
+Before this feature developers used:
+ExecutorService
+CompletableFuture
+manual thread management
+Problems:
+complex code
+difficult error handling
+thread leaks
+Structured concurrency provides:
+✔ cleaner code
+✔ automatic cancellation
+✔ safer lifecycle management
+10.Key Encapsulation Mechanism API : KEM allows two parties to securely establish a shared secret key using public key cryptography, which can then be used for symmetric encryption.
+KeyPairGenerator kpg = KeyPairGenerator.getInstance("X25519");
+KeyPair kp = kpg.generateKeyPair();
+
+Alice (Sender)  →  Bob (Receiver)
+Bob → sends a LOCK (public key)
+Alice → locks a box with that LOCK
+Alice → sends locked box
+Bob → opens it with his KEY (private key)
+
+Why This Is Useful
+This mechanism is used in modern secure systems like:
+TLS 1.3
+**Signal secure messaging
+HTTPS encryption
