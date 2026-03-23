@@ -1,4 +1,5 @@
-public class MoveZeros{
+package top_patterns.two_pointers;
+public class MoveZeroes{
     public void moveZeroes(int[] nums) {
     int slow = 0;
 

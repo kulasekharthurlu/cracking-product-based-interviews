@@ -1,3 +1,4 @@
+package top_patterns.two_pointers;
 public class RemoveDuplicatesFromSortedArray{
     public int removeDuplicates(int[] nums) {
     int slow = 0;

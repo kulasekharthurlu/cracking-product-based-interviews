@@ -1,3 +1,4 @@
+package top_patterns.two_pointers;
 public class ContainerWithMostWater{
     public int maxArea(int[] height) {
     int left = 0, right = height.length - 1;

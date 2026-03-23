@@ -1,4 +1,4 @@
-package linked_list;
+package top_patterns.fast_and_slow_pointers;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +15,8 @@ public class FindMiddleNodeInSll {
 			this.next = null;
 		}
 	}
- 
- public ListNode findMiddleNode() {
+
+	public ListNode findMiddleNode() {
 		if (head == null) {
 			return null;
 		} else {
@@ -28,9 +28,10 @@ public class FindMiddleNodeInSll {
 			}
 			return slowptr;
 		}
-	}	 
+	}
+
 	public static void main(String[] args) {
-		SinglyLinkedList sll = new SinglyLinkedList();
+		FindMiddleNodeInSll sll = new FindMiddleNodeInSll();
 		ListNode first = new ListNode(1);
 		ListNode second = new ListNode(2);
 		ListNode third = new ListNode(3);
@@ -41,6 +42,16 @@ public class FindMiddleNodeInSll {
 		second.next = third;
 		third.next = fourth;
 		sll.printList();
+	}
+
+	private void printList() {
+		 ListNode current = head;
+		while (current != null) {
+			System.out.print(current.data + " ");
+			current = current.next;
+		}
+		System.out.println();
+		
 	}
 
 }

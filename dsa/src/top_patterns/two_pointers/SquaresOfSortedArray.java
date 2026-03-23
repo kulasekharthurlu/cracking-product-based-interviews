@@ -1,3 +1,4 @@
+package top_patterns.two_pointers;
 public class SquaresOfSortedArray{
     public int[] sortedSquares(int[] nums) {
     int left = 0, right = nums.length - 1;
