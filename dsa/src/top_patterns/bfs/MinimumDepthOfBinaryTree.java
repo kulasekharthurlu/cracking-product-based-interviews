@@ -1,3 +1,8 @@
+package top_patterns.bfs;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MinimumDepthOfBinaryTree{
 public int minDepth(TreeNode root) {
     if (root == null) return 0;

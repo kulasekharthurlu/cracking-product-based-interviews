@@ -1,33 +1,42 @@
-public class CourseSchedule{
+package top_patterns.bfs;
 
-public boolean canFinish(int numCourses, int[][] prerequisites) {
-    List<List<Integer>> graph = new ArrayList<>();
-    int[] indegree = new int[numCourses];
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-    for (int i = 0; i < numCourses; i++)
-        graph.add(new ArrayList<>());
+public class CourseSchedule {
 
-    for (int[] p : prerequisites) {
-        graph.get(p[1]).add(p[0]);
-        indegree[p[0]]++;
-    }
+	public boolean canFinish(int numCourses, int[][] prerequisites) {
+		List<List<Integer>> graph = new ArrayList<>();
+		int[] indegree = new int[numCourses];
 
-    Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < numCourses; i++)
+			graph.add(new ArrayList<>());
 
-    for (int i = 0; i < numCourses; i++)
-        if (indegree[i] == 0) q.offer(i);
+		for (int[] p : prerequisites) {
+			graph.get(p[1]).add(p[0]);
+			indegree[p[0]]++;
+		}
 
-    int count = 0;
+		Queue<Integer> q = new LinkedList<>();
 
-    while (!q.isEmpty()) {
-        int cur = q.poll();
-        count++;
+		for (int i = 0; i < numCourses; i++)
+			if (indegree[i] == 0)
+				q.offer(i);
 
-        for (int nei : graph.get(cur)) {
-            if (--indegree[nei] == 0) q.offer(nei);
-        }
-    }
+		int count = 0;
 
-    return count == numCourses;
-}
+		while (!q.isEmpty()) {
+			int cur = q.poll();
+			count++;
+
+			for (int nei : graph.get(cur)) {
+				if (--indegree[nei] == 0)
+					q.offer(nei);
+			}
+		}
+
+		return count == numCourses;
+	}
 }

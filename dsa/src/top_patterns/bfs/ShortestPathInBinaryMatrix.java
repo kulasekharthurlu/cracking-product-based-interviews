@@ -1,3 +1,8 @@
+package top_patterns.bfs;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ShortestPathInBinaryMatrix{
 public int shortestPathBinaryMatrix(int[][] grid) {
     if (grid[0][0] != 0) return -1;

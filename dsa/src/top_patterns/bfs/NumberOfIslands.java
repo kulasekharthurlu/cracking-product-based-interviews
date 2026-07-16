@@ -1,3 +1,8 @@
+package top_patterns.bfs;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class NumberOfIslands{
 public int numIslands(char[][] grid) {
     int count = 0;

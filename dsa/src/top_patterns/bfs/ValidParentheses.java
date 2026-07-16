@@ -1,39 +1,40 @@
+package top_patterns.bfs;
+
 import java.util.Stack;
 
 public class ValidParentheses {
 
-    public static boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+	public static boolean isValid(String s) {
+		Stack<Character> stack = new Stack<>();
 
-        for (char ch : s.toCharArray()) {
+		for (char ch : s.toCharArray()) {
 
-            // Push opening brackets
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } 
-            // Handle closing brackets
-            else {
-                if (stack.isEmpty()) return false;
+			// Push opening brackets
+			if (ch == '(' || ch == '{' || ch == '[') {
+				stack.push(ch);
+			}
+			// Handle closing brackets
+			else {
+				if (stack.isEmpty())
+					return false;
 
-                char top = stack.pop();
+				char top = stack.pop();
 
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
-                    return false;
-                }
-            }
-        }
+				if ((ch == ')' && top != '(') || (ch == '}' && top != '{') || (ch == ']' && top != '[')) {
+					return false;
+				}
+			}
+		}
 
-        // If stack is empty → valid
-        return stack.isEmpty();
-    }
+		// If stack is empty → valid
+		return stack.isEmpty();
+	}
 
-    public static void main(String[] args) {
-        System.out.println(isValid("()"));        // true
-        System.out.println(isValid("()[]{}"));    // true
-        System.out.println(isValid("(]"));        // false
-        System.out.println(isValid("([)]"));      // false
-        System.out.println(isValid("{[]}"));      // true
-    }
+	public static void main(String[] args) {
+		System.out.println(isValid("()")); // true
+		System.out.println(isValid("()[]{}")); // true
+		System.out.println(isValid("(]")); // false
+		System.out.println(isValid("([)]")); // false
+		System.out.println(isValid("{[]}")); // true
+	}
 }
