@@ -1,35 +1,37 @@
+package stack;
+
 import java.util.Arrays;
 import java.util.Stack;
 
 public class NextSmallerElement {
 
-    public static int[] nextSmaller(int[] arr) {
+	public static int[] nextSmaller(int[] arr) {
 
-        int n = arr.length;
-        int[] result = new int[n];
+		int n = arr.length;
+		int[] result = new int[n];
 
-        Stack<Integer> stack = new Stack<>();
+		Stack<Integer> stack = new Stack<>();
 
-        for (int i = n - 1; i >= 0; i--) {
+		for (int i = n - 1; i >= 0; i--) {
 
-            while (!stack.isEmpty() && stack.peek() >= arr[i]) {
-                stack.pop();
-            }
+			while (!stack.isEmpty() && stack.peek() >= arr[i]) {
+				stack.pop();
+			}
 
-            result[i] = stack.isEmpty() ? -1 : stack.peek();
+			result[i] = stack.isEmpty() ? -1 : stack.peek();
 
-            stack.push(arr[i]);
-        }
+			stack.push(arr[i]);
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        int[] arr = {4, 8, 5, 2, 25};
+		int[] arr = { 4, 8, 5, 2, 25 };
 
-        int[] result = nextSmaller(arr);
+		int[] result = nextSmaller(arr);
 
-        System.out.println(Arrays.toString(result));
-    }
+		System.out.println(Arrays.toString(result));
+	}
 }

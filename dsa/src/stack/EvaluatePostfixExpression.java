@@ -1,6 +1,7 @@
+package stack;
 import java.util.Stack;
 
-public class PostfixEvaluation {
+public class EvaluatePostfixExpression {
 
     public static int evaluate(String exp) {
 

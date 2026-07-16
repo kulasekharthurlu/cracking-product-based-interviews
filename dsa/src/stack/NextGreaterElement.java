@@ -1,36 +1,38 @@
+package stack;
+
 import java.util.Stack;
 
 public class NextGreaterElement {
 
-    public static int[] nextGreater(int[] arr) {
+	public static int[] nextGreater(int[] arr) {
 
-        int n = arr.length;
-        int[] result = new int[n];
+		int n = arr.length;
+		int[] result = new int[n];
 
-        Stack<Integer> stack = new Stack<>();
+		Stack<Integer> stack = new Stack<>();
 
-        for (int i = n - 1; i >= 0; i--) {
+		for (int i = n - 1; i >= 0; i--) {
 
-            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
-                stack.pop();
-            }
+			while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+				stack.pop();
+			}
 
-            result[i] = stack.isEmpty() ? -1 : stack.peek();
+			result[i] = stack.isEmpty() ? -1 : stack.peek();
 
-            stack.push(arr[i]);
-        }
+			stack.push(arr[i]);
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        int[] arr = {4, 5, 2, 10};
+		int[] arr = { 4, 5, 2, 10 };
 
-        int[] result = nextGreater(arr);
+		int[] result = nextGreater(arr);
 
-        for (int num : result) {
-            System.out.print(num + " ");
-        }
-    }
+		for (int num : result) {
+			System.out.print(num + " ");
+		}
+	}
 }

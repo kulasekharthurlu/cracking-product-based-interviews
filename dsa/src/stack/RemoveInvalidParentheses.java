@@ -1,50 +1,51 @@
+
+package stack;
+
 import java.util.Stack;
 
-public class MinimumRemove {
+public class RemoveInvalidParentheses {
 
-    public static String minRemove(String s) {
+	public static String minRemove(String s) {
 
-        Stack<Integer> stack = new Stack<>();
-        boolean[] remove = new boolean[s.length()];
+		Stack<Integer> stack = new Stack<>();
+		boolean[] remove = new boolean[s.length()];
 
-        for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i < s.length(); i++) {
 
-            char ch = s.charAt(i);
+			char ch = s.charAt(i);
 
-            if (ch == '(') {
+			if (ch == '(') {
 
-                stack.push(i);
+				stack.push(i);
 
-            } else if (ch == ')') {
+			} else if (ch == ')') {
 
-                if (!stack.isEmpty()) {
-                    stack.pop();
-                } else {
-                    remove[i] = true;
-                }
-            }
-        }
+				if (!stack.isEmpty()) {
+					stack.pop();
+				} else {
+					remove[i] = true;
+				}
+			}
+		}
 
-        while (!stack.isEmpty()) {
-            remove[stack.pop()] = true;
-        }
+		while (!stack.isEmpty()) {
+			remove[stack.pop()] = true;
+		}
 
-        StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i < s.length(); i++) {
 
-            if (!remove[i]) {
-                result.append(s.charAt(i));
-            }
-        }
+			if (!remove[i]) {
+				result.append(s.charAt(i));
+			}
+		}
 
-        return result.toString();
-    }
+		return result.toString();
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        System.out.println(
-                minRemove("lee(t(c)o)de)")
-        );
-    }
+		System.out.println(minRemove("lee(t(c)o)de)"));
+	}
 }

@@ -1,44 +1,43 @@
+package stack;
+
 import java.util.Stack;
 
 public class LongestValidParentheses {
 
-    public static int longestValidParentheses(String s) {
+	public static int longestValidParentheses(String s) {
 
-        Stack<Integer> stack = new Stack<>();
-        stack.push(-1);
+		Stack<Integer> stack = new Stack<>();
+		stack.push(-1);
 
-        int maxLength = 0;
+		int maxLength = 0;
 
-        for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i < s.length(); i++) {
 
-            if (s.charAt(i) == '(') {
+			if (s.charAt(i) == '(') {
 
-                stack.push(i);
+				stack.push(i);
 
-            } else {
+			} else {
 
-                stack.pop();
+				stack.pop();
 
-                if (stack.isEmpty()) {
+				if (stack.isEmpty()) {
 
-                    stack.push(i);
+					stack.push(i);
 
-                } else {
+				} else {
 
-                    maxLength = Math.max(
-                            maxLength,
-                            i - stack.peek()
-                    );
-                }
-            }
-        }
+					maxLength = Math.max(maxLength, i - stack.peek());
+				}
+			}
+		}
 
-        return maxLength;
-    }
+		return maxLength;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        System.out.println(longestValidParentheses("(()"));
-        System.out.println(longestValidParentheses(")()())"));
-    }
+		System.out.println(longestValidParentheses("(()"));
+		System.out.println(longestValidParentheses(")()())"));
+	}
 }
