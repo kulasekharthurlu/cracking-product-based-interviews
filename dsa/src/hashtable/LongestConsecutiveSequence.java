@@ -1,30 +1,35 @@
-public class LongestConsecutiveSequence{
-public int longestConsecutive(int[] nums) {
+package hashtable;
 
-    Set<Integer> set = new HashSet<>();
+import java.util.HashSet;
+import java.util.Set;
 
-    for (int num : nums) {
-        set.add(num);
-    }
+public class LongestConsecutiveSequence {
+	public int longestConsecutive(int[] nums) {
 
-    int longest = 0;
+		Set<Integer> set = new HashSet<>();
 
-    for (int num : set) {
+		for (int num : nums) {
+			set.add(num);
+		}
 
-        if (!set.contains(num - 1)) {
+		int longest = 0;
 
-            int current = num;
-            int streak = 1;
+		for (int num : set) {
 
-            while (set.contains(current + 1)) {
-                current++;
-                streak++;
-            }
+			if (!set.contains(num - 1)) {
 
-            longest = Math.max(longest, streak);
-        }
-    }
+				int current = num;
+				int streak = 1;
 
-    return longest;
-}
+				while (set.contains(current + 1)) {
+					current++;
+					streak++;
+				}
+
+				longest = Math.max(longest, streak);
+			}
+		}
+
+		return longest;
+	}
 }

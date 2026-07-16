@@ -1,20 +1,27 @@
-public class GroupAnagrams{
-public List<List<String>> groupAnagrams(String[] strs) {
 
-    Map<String, List<String>> map = new HashMap<>();
+package hashtable;
 
-    for (String str : strs) {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-        char[] chars = str.toCharArray();
-        Arrays.sort(chars);
+public class GroupAnagrams {
+	public List<List<String>> groupAnagrams(String[] strs) {
 
-        String key = new String(chars);
+		Map<String, List<String>> map = new HashMap<>();
 
-        map.computeIfAbsent(
-                key,
-                k -> new ArrayList<>())
-                .add(str);
-    }
+		for (String str : strs) {
 
-    return new ArrayList<>(map.values());
-}}
+			char[] chars = str.toCharArray();
+			Arrays.sort(chars);
+
+			String key = new String(chars);
+
+			map.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
+		}
+
+		return new ArrayList<>(map.values());
+	}
+}

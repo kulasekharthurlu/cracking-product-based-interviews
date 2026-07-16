@@ -1,20 +1,25 @@
-public class MovingAverage {
+package queue;
 
-    Queue<Integer> q = new LinkedList<>();
-    int size, sum = 0;
+import java.util.LinkedList;
+import java.util.Queue;
 
-    public MovingAverage(int size) {
-        this.size = size;
-    }
+public class MovingAverageFromData {
 
-    public double next(int val) {
+	Queue<Integer> q = new LinkedList<>();
+	int size, sum = 0;
 
-        if (q.size() == size)
-            sum -= q.poll();
+	public MovingAverageFromData(int size) {
+		this.size = size;
+	}
 
-        q.offer(val);
-        sum += val;
+	public double next(int val) {
 
-        return (double) sum / q.size();
-    }
+		if (q.size() == size)
+			sum -= q.poll();
+
+		q.offer(val);
+		sum += val;
+
+		return (double) sum / q.size();
+	}
 }

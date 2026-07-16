@@ -1,34 +1,59 @@
-public class BFSLevelOrderTraversal{
-public List<List<Integer>> levelOrder(TreeNode root) {
+package queue;
 
-    List<List<Integer>> res = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-    if (root == null) return res;
+public class BFSLevelOrderTraversal {
+	public List<List<Integer>> levelOrder(TreeNode root) {
 
-    Queue<TreeNode> q = new LinkedList<>();
-    q.offer(root);
+		java.util.List<List<Integer>> res = new ArrayList<>();
 
-    while (!q.isEmpty()) {
+		if (root == null)
+			return res;
 
-        int size = q.size();
-        List<Integer> level = new ArrayList<>();
+		Queue<TreeNode> q = new LinkedList<>();
+		q.offer(root);
 
-        for (int i = 0; i < size; i++) {
+		while (!q.isEmpty()) {
 
-            TreeNode node = q.poll();
+			int size = q.size();
+			List<Integer> level = new ArrayList<>();
 
-            level.add(node.val);
+			for (int i = 0; i < size; i++) {
 
-            if (node.left != null)
-                q.offer(node.left);
+				TreeNode node = q.poll();
 
-            if (node.right != null)
-                q.offer(node.right);
-        }
+				level.add(node.val);
 
-        res.add(level);
-    }
+				if (node.left != null)
+					q.offer(node.left);
 
-    return res;
+				if (node.right != null)
+					q.offer(node.right);
+			}
+
+			res.add(level);
+		}
+
+		return res;
+	}
 }
+
+class TreeNode {
+	int val;
+	TreeNode left;
+	TreeNode right;
+
+	public TreeNode(int data) {
+		this.val = data;
+
+	}
+
+	@Override
+	public String toString() {
+		return "TreeNode [data=" + val + ", left=" + left + ", right=" + right + "]";
+	}
+
 }

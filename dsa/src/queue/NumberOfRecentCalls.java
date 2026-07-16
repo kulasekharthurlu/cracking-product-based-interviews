@@ -1,18 +1,20 @@
+package queue;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class RecentCounter {
+public class NumberOfRecentCalls {
 
-    Queue<Integer> queue = new LinkedList<>();
+	Queue<Integer> queue = new LinkedList<>();
 
-    public int ping(int t) {
+	public int ping(int t) {
 
-        queue.offer(t);
+		queue.offer(t);
 
-        while (queue.peek() < t - 3000) {
-            queue.poll();
-        }
+		while (queue.peek() < t - 3000) {
+			queue.poll();
+		}
 
-        return queue.size();
-    }
+		return queue.size();
+	}
 }

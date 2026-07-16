@@ -1,46 +1,50 @@
+package queue;
+
 public class CircularQueue {
 
-    int[] arr;
-    int front = 0, rear = -1, size = 0;
+	int[] arr;
+	int front = 0, rear = -1, size = 0;
 
-    public MyCircularQueue(int k) {
-        arr = new int[k];
-    }
+	public CircularQueue(int k) {
+		arr = new int[k];
+	}
 
-    public boolean enQueue(int value) {
+	public boolean enQueue(int value) {
 
-        if (isFull()) return false;
+		if (isFull())
+			return false;
 
-        rear = (rear + 1) % arr.length;
-        arr[rear] = value;
-        size++;
+		rear = (rear + 1) % arr.length;
+		arr[rear] = value;
+		size++;
 
-        return true;
-    }
+		return true;
+	}
 
-    public boolean deQueue() {
+	public boolean deQueue() {
 
-        if (isEmpty()) return false;
+		if (isEmpty())
+			return false;
 
-        front = (front + 1) % arr.length;
-        size--;
+		front = (front + 1) % arr.length;
+		size--;
 
-        return true;
-    }
+		return true;
+	}
 
-    public int Front() {
-        return isEmpty() ? -1 : arr[front];
-    }
+	public int Front() {
+		return isEmpty() ? -1 : arr[front];
+	}
 
-    public int Rear() {
-        return isEmpty() ? -1 : arr[rear];
-    }
+	public int Rear() {
+		return isEmpty() ? -1 : arr[rear];
+	}
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+	public boolean isEmpty() {
+		return size == 0;
+	}
 
-    public boolean isFull() {
-        return size == arr.length;
-    }
+	public boolean isFull() {
+		return size == arr.length;
+	}
 }

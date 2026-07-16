@@ -1,34 +1,38 @@
-import java.util.*;
+package hashtable;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UnionOfArrays {
 
-    public static int[] union(int[] nums1, int[] nums2) {
+	public static int[] union(int[] nums1, int[] nums2) {
 
-        Set<Integer> set = new HashSet<>();
+		Set<Integer> set = new HashSet<>();
 
-        for (int num : nums1) {
-            set.add(num);
-        }
+		for (int num : nums1) {
+			set.add(num);
+		}
 
-        for (int num : nums2) {
-            set.add(num);
-        }
+		for (int num : nums2) {
+			set.add(num);
+		}
 
-        int[] result = new int[set.size()];
-        int index = 0;
+		int[] result = new int[set.size()];
+		int index = 0;
 
-        for (int num : set) {
-            result[index++] = num;
-        }
+		for (int num : set) {
+			result[index++] = num;
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        int[] nums1 = {1, 2, 3, 4};
-        int[] nums2 = {3, 4, 5, 6};
+		int[] nums1 = { 1, 2, 3, 4 };
+		int[] nums2 = { 3, 4, 5, 6 };
 
-        System.out.println(Arrays.toString(union(nums1, nums2)));
-    }
+		System.out.println(Arrays.toString(union(nums1, nums2)));
+	}
 }

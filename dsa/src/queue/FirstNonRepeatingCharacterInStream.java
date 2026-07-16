@@ -1,23 +1,30 @@
-public class FirstNonRepeatingCharacterInStream{
-public String firstNonRepeating(String s) {
-    Queue<Character> q = new LinkedList<>();
-    int[] freq = new int[26];
+package queue;
 
-    StringBuilder sb = new StringBuilder();
+import java.util.Queue;
+import java.util.LinkedList;
 
-    for (char c : s.toCharArray()) {
+public class FirstNonRepeatingCharacterInStream {
+	public String firstNonRepeating(String s) {
+		Queue<Character> q = new LinkedList<>();
+		int[] freq = new int[26];
 
-        freq[c - 'a']++;
-        q.offer(c);
+		StringBuilder sb = new StringBuilder();
 
-        while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
-            q.poll();
-        }
+		for (char c : s.toCharArray()) {
 
-        if (q.isEmpty()) sb.append('#');
-        else sb.append(q.peek());
-    }
+			freq[c - 'a']++;
+			q.offer(c);
 
-    return sb.toString();
-}
+			while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
+				q.poll();
+			}
+
+			if (q.isEmpty())
+				sb.append('#');
+			else
+				sb.append(q.peek());
+		}
+
+		return sb.toString();
+	}
 }

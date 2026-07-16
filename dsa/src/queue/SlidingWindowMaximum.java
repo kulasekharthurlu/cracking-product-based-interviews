@@ -1,25 +1,30 @@
-public class SlidingWindowMaximum{
-public int[] maxSlidingWindow(int[] nums, int k) {
+package queue;
 
-    Deque<Integer> dq = new LinkedList<>();
-    int[] res = new int[nums.length - k + 1];
+import java.util.LinkedList;
+import java.util.Deque;
 
-    int idx = 0;
+public class SlidingWindowMaximum {
+	public int[] maxSlidingWindow(int[] nums, int k) {
 
-    for (int i = 0; i < nums.length; i++) {
+		Deque<Integer> dq = new LinkedList<>();
+		int[] res = new int[nums.length - k + 1];
 
-        while (!dq.isEmpty() && dq.peekFirst() <= i - k)
-            dq.pollFirst();
+		int idx = 0;
 
-        while (!dq.isEmpty() && nums[dq.peekLast()] < nums[i])
-            dq.pollLast();
+		for (int i = 0; i < nums.length; i++) {
 
-        dq.offerLast(i);
+			while (!dq.isEmpty() && dq.peekFirst() <= i - k)
+				dq.pollFirst();
 
-        if (i >= k - 1)
-            res[idx++] = nums[dq.peekFirst()];
-    }
+			while (!dq.isEmpty() && nums[dq.peekLast()] < nums[i])
+				dq.pollLast();
 
-    return res;
-}
+			dq.offerLast(i);
+
+			if (i >= k - 1)
+				res[idx++] = nums[dq.peekFirst()];
+		}
+
+		return res;
+	}
 }

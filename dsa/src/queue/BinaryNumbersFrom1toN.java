@@ -1,16 +1,21 @@
-public class BinaryNumbersFrom1toN{
-public void generateBinary(int n) {
-    Queue<String> q = new LinkedList<>();
+package queue;
 
-    q.offer("1");
+import java.util.LinkedList;
+import java.util.Queue;
 
-    for (int i = 0; i < n; i++) {
-        String cur = q.poll();
+public class BinaryNumbersFrom1toN {
+	public void generateBinary(int n) {
+		Queue<String> q = new LinkedList<>();
 
-        System.out.println(cur);
+		q.offer("1");
 
-        q.offer(cur + "0");
-        q.offer(cur + "1");
-    }
-}
+		for (int i = 0; i < n; i++) {
+			String cur = q.poll();
+
+			System.out.println(cur);
+
+			q.offer(cur + "0");
+			q.offer(cur + "1");
+		}
+	}
 }

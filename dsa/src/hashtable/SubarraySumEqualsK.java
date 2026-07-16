@@ -1,25 +1,29 @@
-public class SubarraySumEqualsK{
-public int subarraySum(int[] nums, int k) {
+package hashtable;
 
-    Map<Integer, Integer> map = new HashMap<>();
+import java.util.HashMap;
+import java.util.Map;
 
-    map.put(0, 1);
+public class SubarraySumEqualsK {
+	public int subarraySum(int[] nums, int k) {
 
-    int sum = 0;
-    int count = 0;
+		Map<Integer, Integer> map = new HashMap<>();
 
-    for (int num : nums) {
+		map.put(0, 1);
 
-        sum += num;
+		int sum = 0;
+		int count = 0;
 
-        if (map.containsKey(sum - k)) {
-            count += map.get(sum - k);
-        }
+		for (int num : nums) {
 
-        map.put(sum,
-                map.getOrDefault(sum, 0) + 1);
-    }
+			sum += num;
 
-    return count;
-}
+			if (map.containsKey(sum - k)) {
+				count += map.get(sum - k);
+			}
+
+			map.put(sum, map.getOrDefault(sum, 0) + 1);
+		}
+
+		return count;
+	}
 }
