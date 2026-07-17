@@ -1,20 +1,22 @@
-public class DetectCycleInArray{
-public int findDuplicate(int[] nums) {
-    int slow = nums[0];
-    int fast = nums[0];
+package top_patterns.fast_and_slow_pointers;
 
-    do {
-        slow = nums[slow];
-        fast = nums[nums[fast]];
-    } while (slow != fast);
+public class DetectCycleInArray {
+	public int findDuplicate(int[] nums) {
+		int slow = nums[0];
+		int fast = nums[0];
 
-    slow = nums[0];
+		do {
+			slow = nums[slow];
+			fast = nums[nums[fast]];
+		} while (slow != fast);
 
-    while (slow != fast) {
-        slow = nums[slow];
-        fast = nums[fast];
-    }
-    return slow;
-}
+		slow = nums[0];
+
+		while (slow != fast) {
+			slow = nums[slow];
+			fast = nums[fast];
+		}
+		return slow;
+	}
 
 }

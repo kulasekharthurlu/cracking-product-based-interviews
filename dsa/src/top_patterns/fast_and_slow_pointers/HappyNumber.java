@@ -1,23 +1,25 @@
-public class HappyNumber{
-public boolean isHappy(int n) {
-    int slow = n, fast = n;
+package top_patterns.fast_and_slow_pointers;
 
-    do {
-        slow = squareSum(slow);
-        fast = squareSum(squareSum(fast));
-    } while (slow != fast);
+public class HappyNumber {
+	public boolean isHappy(int n) {
+		int slow = n, fast = n;
 
-    return slow == 1;
-}
+		do {
+			slow = squareSum(slow);
+			fast = squareSum(squareSum(fast));
+		} while (slow != fast);
 
-private int squareSum(int n) {
-    int sum = 0;
-    while (n > 0) {
-        int d = n % 10;
-        sum += d * d;
-        n /= 10;
-    }
-    return sum;
-}
+		return slow == 1;
+	}
+
+	private int squareSum(int n) {
+		int sum = 0;
+		while (n > 0) {
+			int d = n % 10;
+			sum += d * d;
+			n /= 10;
+		}
+		return sum;
+	}
 
 }

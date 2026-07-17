@@ -1,27 +1,32 @@
-public class FindAllAnagramsInString{
+package top_patterns.sliding_window;
 
-public List<Integer> findAnagrams(String s, String p) {
-    List<Integer> res = new ArrayList<>();
-    int[] freq = new int[26];
+import java.util.ArrayList;
+import java.util.List;
 
-    for (char c : p.toCharArray()) freq[c - 'a']++;
+public class FindAllAnagramsInString {
 
-    int left = 0;
+	public List<Integer> findAnagrams(String s, String p) {
+		List<Integer> res = new ArrayList<>();
+		int[] freq = new int[26];
 
-    for (int right = 0; right < s.length(); right++) {
-        freq[s.charAt(right) - 'a']--;
+		for (char c : p.toCharArray())
+			freq[c - 'a']++;
 
-        while (freq[s.charAt(right) - 'a'] < 0) {
-            freq[s.charAt(left) - 'a']++;
-            left++;
-        }
+		int left = 0;
 
-        if (right - left + 1 == p.length()) {
-            res.add(left);
-        }
-    }
-    return res;
-}
+		for (int right = 0; right < s.length(); right++) {
+			freq[s.charAt(right) - 'a']--;
 
+			while (freq[s.charAt(right) - 'a'] < 0) {
+				freq[s.charAt(left) - 'a']++;
+				left++;
+			}
+
+			if (right - left + 1 == p.length()) {
+				res.add(left);
+			}
+		}
+		return res;
+	}
 
 }

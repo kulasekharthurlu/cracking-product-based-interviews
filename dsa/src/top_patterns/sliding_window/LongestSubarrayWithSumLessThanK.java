@@ -1,20 +1,21 @@
-public class LongestSubarrayWithSumLessThanK{
+package top_patterns.sliding_window;
 
-public int longestSubarray(int[] nums, int k) {
-    int left = 0, sum = 0, maxLen = 0;
+public class LongestSubarrayWithSumLessThanK {
 
-    for (int right = 0; right < nums.length; right++) {
-        sum += nums[right];
+	public int longestSubarray(int[] nums, int k) {
+		int left = 0, sum = 0, maxLen = 0;
 
-        while (sum > k) {
-            sum -= nums[left];
-            left++;
-        }
+		for (int right = 0; right < nums.length; right++) {
+			sum += nums[right];
 
-        maxLen = Math.max(maxLen, right - left + 1);
-    }
-    return maxLen;
-}
+			while (sum > k) {
+				sum -= nums[left];
+				left++;
+			}
 
+			maxLen = Math.max(maxLen, right - left + 1);
+		}
+		return maxLen;
+	}
 
 }

@@ -1,14 +1,17 @@
-public class DetectCycleInLinkedList{
-public boolean hasCycle(ListNode head) {
-    ListNode slow = head, fast = head;
+package top_patterns.fast_and_slow_pointers;
 
-    while (fast != null && fast.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
+public class DetectCycleInLinkedList {
+	public boolean hasCycle(ListNode head) {
+		ListNode slow = head, fast = head;
 
-        if (slow == fast) return true;
-    }
-    return false;
-}
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast)
+				return true;
+		}
+		return false;
+	}
 
 }

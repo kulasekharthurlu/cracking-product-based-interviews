@@ -1,23 +1,26 @@
-public class BinarySubarraysWithSumK{
-public int numSubarraysWithSum(int[] nums, int goal) {
-    return atMost(nums, goal) - atMost(nums, goal - 1);
-}
+package top_patterns.sliding_window;
 
-private int atMost(int[] nums, int goal) {
-    if (goal < 0) return 0;
+public class BinarySubarraysWithSumK {
+	public int numSubarraysWithSum(int[] nums, int goal) {
+		return atMost(nums, goal) - atMost(nums, goal - 1);
+	}
 
-    int left = 0, sum = 0, count = 0;
+	private int atMost(int[] nums, int goal) {
+		if (goal < 0)
+			return 0;
 
-    for (int right = 0; right < nums.length; right++) {
-        sum += nums[right];
+		int left = 0, sum = 0, count = 0;
 
-        while (sum > goal) {
-            sum -= nums[left];
-            left++;
-        }
+		for (int right = 0; right < nums.length; right++) {
+			sum += nums[right];
 
-        count += right - left + 1;
-    }
-    return count;
-}
+			while (sum > goal) {
+				sum -= nums[left];
+				left++;
+			}
+
+			count += right - left + 1;
+		}
+		return count;
+	}
 }

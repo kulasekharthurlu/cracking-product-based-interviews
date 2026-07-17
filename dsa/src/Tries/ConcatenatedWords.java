@@ -1,100 +1,91 @@
+package Tries;
+
 import java.util.*;
 
 class TrieNode {
-    TrieNode[] children = new TrieNode[26];
-    boolean isEnd;
+	TrieNode[] children = new TrieNode[26];
+	boolean isEnd;
 }
 
 public class ConcatenatedWords {
 
-    private TrieNode root = new TrieNode();
+	private TrieNode root = new TrieNode();
 
-    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+	public List<String> findAllConcatenatedWordsInADict(String[] words) {
 
-        Arrays.sort(words, Comparator.comparingInt(String::length));
+		Arrays.sort(words, Comparator.comparingInt(String::length));
 
-        List<String> result = new ArrayList<>();
+		List<String> result = new ArrayList<>();
 
-        for (String word : words) {
+		for (String word : words) {
 
-            if (word.length() == 0) {
-                continue;
-            }
+			if (word.length() == 0) {
+				continue;
+			}
 
-            if (canForm(word, 0, 0)) {
-                result.add(word);
-            } else {
-                insert(word);
-            }
-        }
+			if (canForm(word, 0, 0)) {
+				result.add(word);
+			} else {
+				insert(word);
+			}
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    private void insert(String word) {
+	private void insert(String word) {
 
-        TrieNode current = root;
+		TrieNode current = root;
 
-        for (char ch : word.toCharArray()) {
+		for (char ch : word.toCharArray()) {
 
-            int index = ch - 'a';
+			int index = ch - 'a';
 
-            if (current.children[index] == null) {
-                current.children[index] = new TrieNode();
-            }
+			if (current.children[index] == null) {
+				current.children[index] = new TrieNode();
+			}
 
-            current = current.children[index];
-        }
+			current = current.children[index];
+		}
 
-        current.isEnd = true;
-    }
+		current.isEnd = true;
+	}
 
-    private boolean canForm(String word, int index, int count) {
+	private boolean canForm(String word, int index, int count) {
 
-        if (index == word.length()) {
-            return count >= 2;
-        }
+		if (index == word.length()) {
+			return count >= 2;
+		}
 
-        TrieNode current = root;
+		TrieNode current = root;
 
-        for (int i = index; i < word.length(); i++) {
+		for (int i = index; i < word.length(); i++) {
 
-            int child = word.charAt(i) - 'a';
+			int child = word.charAt(i) - 'a';
 
-            if (current.children[child] == null) {
-                return false;
-            }
+			if (current.children[child] == null) {
+				return false;
+			}
 
-            current = current.children[child];
+			current = current.children[child];
 
-            if (current.isEnd) {
+			if (current.isEnd) {
 
-                if (canForm(word, i + 1, count + 1)) {
-                    return true;
-                }
-            }
-        }
+				if (canForm(word, i + 1, count + 1)) {
+					return true;
+				}
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        String[] words = {
-                "cat",
-                "cats",
-                "catsdogcats",
-                "dog",
-                "dogcatsdog",
-                "hippopotamuses",
-                "rat",
-                "ratcatdogcat"
-        };
+		String[] words = { "cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat" };
 
-        ConcatenatedWords solution = new ConcatenatedWords();
+		ConcatenatedWords solution = new ConcatenatedWords();
 
-        System.out.println(
-                solution.findAllConcatenatedWordsInADict(words)
-        );
-    }
+		System.out.println(solution.findAllConcatenatedWordsInADict(words));
+	}
 }

@@ -1,5 +1,12 @@
 package trees;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.TreeMap;
+
 public class Trees {
 
 	public static void main(String[] args) {
@@ -17,122 +24,129 @@ public class Trees {
 		second.right = fifth;
 		third.left = sixth;
 		third.right = seventh;
-		t.leftView( root);
-		t.rightView( root);
+		t.leftView(root);
+		t.rightView(root);
 	}
 
 	public void leftView(TreeNode root) {
 
-		if(root == null) {
+		if (root == null) {
 			return;
 		}
-		System.out.print(root.data);
+		System.out.print(root.val);
 		leftView(root.left);
-
 
 	}
 
 	public void rightView(TreeNode root) {
 
-		if(root == null) {
+		if (root == null) {
 			return;
 		}
-		System.out.print(root.data);
+		System.out.print(root.val);
 		leftView(root.right);
 
-
 	}
-public List<List<Integer>> frontView(TreeNode root) {
-    List<List<Integer>> res = new ArrayList<>();
-    if (root == null) return res;
 
-    Queue<TreeNode> q = new LinkedList<>();
-    q.offer(root);
+	public List<List<Integer>> frontView(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		if (root == null)
+			return res;
 
-    while (!q.isEmpty()) {
-        int size = q.size();
-        List<Integer> level = new ArrayList<>();
+		Queue<TreeNode> q = new LinkedList<>();
+		q.offer(root);
 
-        for (int i = 0; i < size; i++) {
-            TreeNode node = q.poll();
-            level.add(node.val);
+		while (!q.isEmpty()) {
+			int size = q.size();
+			List<Integer> level = new ArrayList<>();
 
-            if (node.left != null) q.offer(node.left);
-            if (node.right != null) q.offer(node.right);
-        }
-        res.add(level);
-    }
-    return res;
+			for (int i = 0; i < size; i++) {
+				TreeNode node = q.poll();
+				level.add(node.val);
+
+				if (node.left != null)
+					q.offer(node.left);
+				if (node.right != null)
+					q.offer(node.right);
+			}
+			res.add(level);
+		}
+		return res;
+	}
+
+	public List<Integer> bottomView(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if (root == null)
+			return res;
+
+		Map<Integer, Integer> map = new TreeMap<>();
+		Queue<Pair> q = new LinkedList<>();
+
+		q.offer(new Pair(root, 0));
+
+		while (!q.isEmpty()) {
+			Pair p = q.poll();
+
+			// overwrite every time
+			map.put(p.hd, p.node.val);
+
+			if (p.node.left != null)
+				q.offer(new Pair(p.node.left, p.hd - 1));
+
+			if (p.node.right != null)
+				q.offer(new Pair(p.node.right, p.hd + 1));
+		}
+
+		res.addAll(map.values());
+		return res;
+	}
+
+	public List<Integer> topView(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if (root == null)
+			return res;
+
+		Map<Integer, Integer> map = new TreeMap<>();
+		Queue<Pair> q = new LinkedList<>();
+
+		q.offer(new Pair(root, 0));
+
+		while (!q.isEmpty()) {
+			Pair p = q.poll();
+
+			if (!map.containsKey(p.hd)) {
+				map.put(p.hd, p.node.val);
+			}
+
+			if (p.node.left != null)
+				q.offer(new Pair(p.node.left, p.hd - 1));
+
+			if (p.node.right != null)
+				q.offer(new Pair(p.node.right, p.hd + 1));
+		}
+
+		res.addAll(map.values());
+		return res;
+	}
+
 }
 
-public List<Integer> bottomView(TreeNode root) {
-    List<Integer> res = new ArrayList<>();
-    if (root == null) return res;
-
-    Map<Integer, Integer> map = new TreeMap<>();
-    Queue<Pair> q = new LinkedList<>();
-
-    q.offer(new Pair(root, 0));
-
-    while (!q.isEmpty()) {
-        Pair p = q.poll();
-
-        // overwrite every time
-        map.put(p.hd, p.node.val);
-
-        if (p.node.left != null)
-            q.offer(new Pair(p.node.left, p.hd - 1));
-
-        if (p.node.right != null)
-            q.offer(new Pair(p.node.right, p.hd + 1));
-    }
-
-    res.addAll(map.values());
-    return res;
-}
-
-
-public List<Integer> topView(TreeNode root) {
-    List<Integer> res = new ArrayList<>();
-    if (root == null) return res;
-
-    Map<Integer, Integer> map = new TreeMap<>();
-    Queue<Pair> q = new LinkedList<>();
-
-    q.offer(new Pair(root, 0));
-
-    while (!q.isEmpty()) {
-        Pair p = q.poll();
-
-        if (!map.containsKey(p.hd)) {
-            map.put(p.hd, p.node.val);
-        }
-
-        if (p.node.left != null)
-            q.offer(new Pair(p.node.left, p.hd - 1));
-
-        if (p.node.right != null)
-            q.offer(new Pair(p.node.right, p.hd + 1));
-    }
-
-    res.addAll(map.values());
-    return res;
-}
-
-
-}
-
-class TreeNode{
-	int data;
+class TreeNode {
+	int val;
 	TreeNode left;
 	TreeNode right;
+
 	public TreeNode(int data) {
-		this.data = data;
+		this.val = data;
 
 	}
+
 	@Override
 	public String toString() {
-		return "TreeNode [data=" + data + ", left=" + left + ", right=" + right + "]";
+		return "TreeNode [data=" + val + ", left=" + left + ", right=" + right + "]";
 	}
 
+}
+class Pair{
+	TreeNode node;
 }

@@ -1,22 +1,25 @@
-public class SubarrayProductLessThanK{
+package top_patterns.sliding_window;
 
-public int numSubarrayProductLessThanK(int[] nums, int k) {
-    if (k <= 1) return 0;
+public class SubarrayProductLessThanK {
 
-    int left = 0;
-    int product = 1;
-    int count = 0;
+	public int numSubarrayProductLessThanK(int[] nums, int k) {
+		if (k <= 1)
+			return 0;
 
-    for (int right = 0; right < nums.length; right++) {
-        product *= nums[right];
+		int left = 0;
+		int product = 1;
+		int count = 0;
 
-        while (product >= k) {
-            product /= nums[left];
-            left++;
-        }
+		for (int right = 0; right < nums.length; right++) {
+			product *= nums[right];
 
-        count += right - left + 1;
-    }
-    return count;
-}
+			while (product >= k) {
+				product /= nums[left];
+				left++;
+			}
+
+			count += right - left + 1;
+		}
+		return count;
+	}
 }

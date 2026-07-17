@@ -1,16 +1,18 @@
-public class MaximumSumSubarrayOfSizeK{
-public int maxSum(int[] nums, int k) {
-    int sum = 0, max = 0;
+package top_patterns.two_pointers;
 
-    for (int i = 0; i < nums.length; i++) {
-        sum += nums[i];
+public class MaximumSumSubarrayOfSizeK {
+	public int maxSum(int[] nums, int k) {
+		int sum = 0, max = 0;
 
-        if (i >= k - 1) {
-            max = Math.max(max, sum);
-            sum -= nums[i - k + 1];
-        }
-    }
-    return max;
-}
+		for (int i = 0; i < nums.length; i++) {
+			sum += nums[i];
+
+			if (i >= k - 1) {
+				max = Math.max(max, sum);
+				sum -= nums[i - k + 1];
+			}
+		}
+		return max;
+	}
 
 }
